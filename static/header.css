@@ -1,0 +1,308 @@
+:root {
+    --color1: #302B63;
+    --color1darker: #0F0C29;
+    --colorlight: #E0DEDE;
+    --coloraccent1: #FC7A1E;
+    --coloraccent2: #f85c14;
+
+    --buttonhover: #6d44b8;
+}
+
+html {
+    font-family: 'Jost', sans-serif;
+    font-size: 1.25em;
+    scroll-behavior: smooth;
+}
+
+div {
+    display: block;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.6s;
+    padding: 40px 0px;
+    /* height: 60px; */
+    font-family: 'Jost', sans-serif;
+    z-index: 100000;
+}
+
+header.sticky {
+    padding: 0px 0px;
+    background-color: white;
+}
+
+.logo {
+    position: relative;
+    font-weight: 700;
+    padding: 0px 70px;
+    color: white;
+    text-decoration: none;
+    font-size: 1.25em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.6s;
+    text-shadow: 5px 5px 10px #000;
+}
+
+.logo span {
+    color: var(--coloraccent1);
+
+}
+
+header.sticky .logo {
+    color: var(--color1darker);
+    text-shadow: none;
+}
+
+.searchBar {
+    position: relative;
+    display: inline-flex;
+    padding: 0;
+    margin: 0;
+    width: 50%;
+    max-width: 300px;
+    height: 30px;
+
+    color: #b0b0b0;
+    border: 2px solid #b0b0b0;
+
+    text-decoration: none;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.searchBar:focus-within {
+    outline: 2px solid white;
+}
+
+header.sticky .searchBar:focus-within {
+    outline: 2px solid var(--coloraccent1);
+}
+
+header.sticky .searchBar {
+    border-color: rgb(126, 126, 126);
+}
+
+.searchBar input {
+    position: relative;
+    padding-left: 10px;
+    margin: 0;
+    width: 85%;
+    height: 100%;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    text-emphasis: none;
+
+    color: white;
+    /* caret-color: var(--coloraccent1); */
+    /* color: white; */
+    /* border: 1px solid blue; */
+}
+
+.searchBar input:focus {
+    outline: none;
+}
+
+::placeholder,
+:-ms-input-placeholder {
+    color: red;
+}
+
+header.sticky .searchBar input {
+    color: black;
+}
+
+.searchIcon {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 10%;
+    height: 100%;
+
+    /* border: 1px solid blue; */
+
+}
+
+.searchIcon a {
+    text-decoration: none;
+}
+
+.searchIcon a::before {
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    content: "\f002";
+    font-style: normal;
+    font-size: medium;
+    color: #b0b0b0;
+}
+
+.circle{
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    position:absolute;
+    top: 0;
+    right: 0;
+    transform: translate(0%,-30%);
+    border-radius: 50%;
+    /* background-color: #6d44b8; */
+    background-color: var(--coloraccent1);
+    color: white;
+    font-size: small;
+
+    text-align: center;
+
+    /* box-shadow: 1px 0px 10px 0px #fff; */
+}
+
+header ul {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+header ul li {
+    position: relative;
+    list-style: none;
+    /* border: 1px solid blue; */
+}
+
+header ul li a,
+header ul li form,
+header ul li button {
+    position: relative;
+    margin: 0 18px;
+    text-decoration: none;
+    color: white;
+    /* letter-spacing: 2px; */
+    font-weight: 500;
+    transition: 0.6s;
+}
+
+header.sticky ul li a {
+    color: var(--color1darker);
+}
+
+
+.active {
+    display: inline-block;
+    color: var(--color1darker);
+    text-align: center;
+    margin: 0;
+    margin-right: 10px;
+    /* margin-right: 5px; */
+    text-decoration: none;
+}
+
+.active button:hover {
+    background: var(--coloraccent1);
+
+}
+
+.active button {
+    /* margin: 10px 10px; */
+    width: 90px;
+    height: 35px;
+    font-weight: bold;
+    background-color: var(--colorlight);
+    /*#04AA6D;*/
+    border-radius: 15px;
+}
+
+header.sticky .active button {
+    /* background-color: #3e3881; */
+    background-color: var(--coloraccent1);
+    color: whitesmoke;
+}
+
+li a:hover:not(.active) {
+    /* background-color: #302B63; */
+    color: var(--coloraccent2);
+}
+
+.vl {
+    position: relative;
+    margin: 0;
+    width: 0;
+    margin-left: 10px;
+    height: 50%;
+    /* display: inline-block; */
+    border-left: 2px solid rgb(126, 126, 126);
+}
+
+
+a:hover {
+    /* color: hotpink; */
+    transition: 0.5s;
+}
+
+header button {
+    justify-content: center;
+    display: block;
+    /* font-size: 1em; */
+    background-color: transparent;
+    /* font-weight: bold; */
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+
+/* ANCHOR */
+.anchor {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+    height: 50px;
+    width: 50px;
+    /* background-color: #302B63; */
+    background-color: var(--coloraccent1); 
+    transition: 0.3s;
+    z-index: 100;
+
+    opacity: 0;
+
+    transition: 1s;
+}
+
+.anchor a {
+    text-decoration: none;
+}
+
+.anchor a::before {
+    font-weight: 900;
+    font-family: "Font Awesome 5 Free";
+    content: "\f102";
+    font-style: normal;
+    color: white
+}
+
+.anchor.sticky {
+    opacity: 1;
+}
+
+/* .anchor:active {
+    width: 150px;
+} */
+
+/* Start of body */

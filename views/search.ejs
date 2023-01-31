@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>IST - Search</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/results.css" media="screen">
+
+</head>
+<!-- Start of navbar -->
+<header>
+    <a href="/" class="logo">Internal<span>Server</span>Terror</a>
+    <form class="searchBar" action="/search" method="get">
+        <input type="text" name="query" placeholder="Search for destination...">
+        <button type="submit" class="searchIcon">
+            <a></a>
+        </button>
+    </form>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/want-to-go">Want-To-Go</a>
+            <div class="circle"><%= user?user.destination.length:0 %></div>
+        </li>
+
+        <li class="vl"><a></a></li>
+
+        <li><a href="" style="text-transform:capitalize;">
+                <%= user?user.username:'admin' %>
+            </a></li>
+        <li>
+            <form class="active" action="/logout" method="post">
+                <button class="active" type="submit">Sign Out</button>
+            </form>
+        </li>
+    </ul>
+    <!-- </div> -->
+</header>
+
+<script type="text/javascript">
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        var anchor = document.querySelector(".anchor")
+        header.classList.toggle("sticky", window.scrollY > 35);
+        anchor.classList.toggle("sticky", window.scrollY > 100);
+    })
+
+    urlp=[];s=location.toString().split('?');s=s[1].split('&');for(i=0;i<s.length;i++){u=s[i].split('=');urlp[u[0]]=u[1];}
+</script>
+<!-- End of navbar -->
+
+<body>
+    <div class="anchor">
+        <a href="#"></a>
+    </div>
+
+    <div class="title center-items" id="top"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(search3.jpg), no-repeat center center;
+               background-size: cover;">
+        <h1>
+            Search Results
+        </h1>
+
+    </div>
+
+   
+    <div class="grid-container">
+
+        <form class="searchBar2" action="/search" method="get">
+            <button class="searchIcon2" type="submit">
+                <h4></h4>
+            </button>
+            <input class="searchInput" type="text" name="query" placeholder="Search for destination...">
+        </form>
+
+        <div class="n-search-results">
+            <%=destinations.length%> result<%=destinations.length==1?"":"s"%> found for <span><%=query%></span>
+        </div>
+
+        <% if (destinations.length==0) { %>
+            <h2>No results found</h2>
+            <% } else { for (var i=0; i < destinations.length; i++) { %>
+                <form class="grid-item" action="/search/<%= destinations[i]._id %>/<%=query%>" method="post">
+                    <p class="item-text">
+                        <a href="/home/<%=destinations[i].category%>/<%= destinations[i]._id %>/details">
+                            <%= destinations[i].destinationName%>
+                        </a>
+                        <a class="category" href="/home/<%=destinations[i].category%>"> - <%= destinations[i].category%></a>
+                        <br/><%= destinations[i].description %>
+                    </p>
+                    <% if (available[i]==1) {
+                        %><button type="submit">Add To<br/>Want-To-Go</button>
+                    <% } else {
+                        %><button disabled="true" type="submit">Added ✔</button>
+                    <% } %>
+                </form>
+                <% } } %>
+                    <!-- <a href="/want-to-go">
+                        <p>View your to go list</p>
+                    </a> -->
+    </div>
+
+
+</body>
+
+</html>

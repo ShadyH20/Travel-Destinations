@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IST - Home</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="home-page.css">
+</head>
+
+<!-- Start of navbar -->
+<header>
+    <a href="/" class="logo">Internal<span>Server</span>Terror</a>
+    <form class="searchBar" action="/search" method="get">
+        <input type="text" name="query" placeholder="Search for destination...">
+        <button type="submit" class="searchIcon">
+            <a></a>
+        </button>
+    </form>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/want-to-go">Want-To-Go</a>
+            <div class="circle"><%= user?user.destination.length:0 %></div>
+        </li>
+
+        <li class="vl"><a></a></li>
+
+        <li><a href="" style="text-transform:capitalize;">
+                <%= user?user.username:'admin' %>
+            </a></li>
+        <li>
+            <form class="active" action="/logout" method="post">
+                <button class="active" type="submit">Sign Out</button>
+            </form>
+        </li>
+    </ul>
+    <!-- </div> -->
+</header>
+
+<script type="text/javascript">
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        var anchor = document.querySelector(".anchor")
+        header.classList.toggle("sticky", window.scrollY > 35);
+        anchor.classList.toggle("sticky", window.scrollY > 100);
+    })
+</script>
+<!-- End of navbar -->
+
+<!-- Start of destinations -->
+
+<body>
+    <div class="anchor">
+        <a href="#"></a>
+    </div>
+
+
+    <div class="title center-items" id="top">
+        <h1>Categories</h1>
+
+    </div>
+    <div class="grid-container">
+        <% for (var i=0; i < categories.length; i++) { %>
+            <!-- <div class="grid-item"> -->
+            <!-- <div>
+                    <img class="fluid-img" src="package-1.jpg" alt>
+                    <a class="destination-overlay" href="/home/<%= categories[i] %>"> 
+                        <%= categories[i] %>
+                        <span>N destinations</span>
+                    </a>
+                </div> -->
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="destination-item position-relative overflow-hidden mb-2">
+                    <img class="img-fluid" src="<%= categories[i] %>.jpg" onerror="this.src='search2.jpg'">
+                    <a class="destination-overlay text-white text-decoration-none" href="/home/<%= categories[i] %>">
+                        <h5 class="text-white">
+                            <%= categories[i] %>
+                        </h5>
+                        <span><%=catN[i]%> destination<%=catN[i]==1?"":"s"%></span>
+                    </a>
+                </div>
+            </div>
+            <!-- </div> -->
+            <% } %>
+                <%= errorMessage %>
+
+
+    </div>
+
+</body>
+
+<!-- <footer>
+    <div class="grid-container">
+        <a href="#" class="logo">Logo</a>
+        <a href="/">Home</a>
+        <a href="/want-to-go">Want-To-Go</a>
+    </div>
+</footer> -->
+
+</html>

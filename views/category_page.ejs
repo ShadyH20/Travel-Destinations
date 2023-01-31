@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>IST - <%= category%></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/results.css" media="screen">
+
+</head>
+<!-- Start of navbar -->
+<header>
+    <a href="/" class="logo">Internal<span>Server</span>Terror</a>
+    <form class="searchBar" action="/search" method="get">
+        <input type="text" name="query" placeholder="Search for destination...">
+        <button type="submit" class="searchIcon">
+            <a></a>
+        </button>
+    </form>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/want-to-go">Want-To-Go</a>
+            <div class="circle"><%= user?user.destination.length:0 %></div>
+        </li>
+
+        <li class="vl"><a></a></li>
+
+        <li><a href="" style="text-transform:capitalize;">
+                <%= user?user.username:'admin' %>
+            </a></li>
+        <li>
+            <form class="active" action="/logout" method="post">
+                <button class="active" type="submit">Sign Out</button>
+            </form>
+        </li>
+    </ul>
+    <!-- </div> -->
+</header>
+
+<script type="text/javascript">
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        var anchor = document.querySelector(".anchor")
+        header.classList.toggle("sticky", window.scrollY > 35);
+        anchor.classList.toggle("sticky", window.scrollY > 100);
+    })
+    if(!user){
+        destinations = [];
+    }
+</script>
+<!-- End of navbar -->
+
+<body>
+    <div class="anchor">
+        <a href="#"></a>
+    </div>
+
+    <div class="title center-items" id="top">
+        <h1>
+            <%= category %>
+        </h1>
+
+    </div>
+
+    <div class="grid-container">
+
+        <% if (destinations.length==0) { %>
+            <h2>No results found</h2>
+            <% } else { for (var i=0; i < destinations.length; i++) { %>
+                <form class="grid-item" action="/home/<%=category %>/<%= destinations[i]._id %>" method="post">
+                    <p class="item-text">
+                        <a href="/home/<%=category %>/<%= destinations[i]._id %>/details">
+                            <%= destinations[i].destinationName%>
+                        </a> 
+                        <br/><%= destinations[i].description %>
+                    </p>
+                    <% if (available[i]==1) { %><button type="submit">Add To<br/>Want-To-Go</button>
+                        <% } else { %><button disabled="true" type="submit">Added ✔</button>
+                            <% } %>
+                </form>
+                <% } } %>
+                    <!-- <a href="/want-to-go">
+                        <p>View your to go list</p>
+                    </a> -->
+    </div>
+
+
+</body>
+
+</html>

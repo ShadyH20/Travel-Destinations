@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>IST - <%= destination.destinationName%></title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="/results.css">
+    <!-- <link rel="stylesheet" href="results.css" type="text/css"> -->
+</head>
+<!-- Start of navbar -->
+<header>
+    <a href="/" class="logo">Internal<span>Server</span>Terror</a>
+    <form class="searchBar" action="/home/" method="get">
+        <input type="text" name="query" placeholder="Search for destination...">
+        <button type="submit" class="searchIcon">
+            <a></a>
+        </button>
+        <!-- <button type="submit"></button> -->
+
+        <!-- <input type="text" name="searchText" placeholder="Destination"> -->
+
+    </form>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/want-to-go">Want-To-Go</a>
+            <div class="circle"><%= user?user.destination.length:0 %></div>
+        </li>
+
+        <li class="vl"><a></a></li>
+
+        <li><a href="" style="text-transform:capitalize;">
+                <%= user?user.username:'admin' %>
+            </a></li>
+        <li>
+            <form class="active" action="/logout" method="post">
+                <button class="active" type="submit">Sign Out</button>
+            </form>
+        </li>
+    </ul>
+    <!-- </div> -->
+</header>
+
+<script type="text/javascript">
+    window.addEventListener("scroll", function () {
+        var header = document.querySelector("header");
+        var anchor = document.querySelector(".anchor")
+        header.classList.toggle("sticky", window.scrollY > 35);
+        anchor.classList.toggle("sticky", window.scrollY > 100);
+    })
+</script>
+<!-- End of navbar -->
+
+<body>
+    <div class="anchor">
+        <a href="#"></a>
+    </div>
+
+    <div class="title center-items" id="top">
+        <h1 style="line-height: 0.7;">
+            <%=destination.destinationName%>
+                <br /><span style="font-size: 0.4em; color:lightgray;">
+                    <%=destination.category%>
+                </span>
+
+        </h1>
+
+
+    </div>
+
+    <div class="grid-container" style="text-align: center;
+               align-items: center;">
+        <div class="grid-item">
+            <p style="text-align: center; width: 100%; line-height: 1.5; font-size: 20px;">
+                <!-- <i>Description:</i>
+                <br /> -->
+                <%=destination.description%>
+            </p>
+        </div>
+        <!-- <p>Video <a href="<%=destination.videoLink%>" target="_blank">link</a></p> -->
+        <div style="position: relative;
+                    align-items: center;
+                    text-align: center;
+                    height: fit-content;
+                    width: 100%;
+                    margin-top: 20px;">
+            <iframe width="720" height="405" src="<%=destination.videoLink%>" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</body>
+
+</html>
