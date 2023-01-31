@@ -1,0 +1,22 @@
+{
+  "name": "web-dev-projects",
+  "version": "1.0.0",
+  "description": "Team 73 Networks Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "Team 73",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "md5": "^2.3.0",
+    "mongoose": "^6.7.4"
+  }
+}
